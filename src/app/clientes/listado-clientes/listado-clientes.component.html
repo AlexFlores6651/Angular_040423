@@ -1,0 +1,12 @@
+<h2 class="text-center my-4">Listado clientes</h2>
+
+<div class="my-4" *ngIf="!clientes.length">No hay clientes por el momento</div>
+
+<div class="card my-4 p-4">
+  <article class="mb-4" *ngFor="let cliente of clientes">
+    <span class="mr-4">{{cliente.nombre}}</span>
+    <span class="mr-4">{{cliente.cif}}</span>
+    <span class="mr-4">{{cliente.direccion}}</span>
+    <span class="">{{cliente.grupo}}</span>
+  </article>
+</div>

@@ -1,32 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Cliente, Grupo } from './cliente.model';
+import { GRUPOS } from './grupo';
+
 
 @Injectable()
 export class ClientesService {
 
   private clientes: Cliente[];
-  private grupos: Grupo[];
+  private grupos: Grupo[] = GRUPOS;
 
   constructor() { 
-    this.grupos = [
-      {
-        id: 0,
-        nombre: 'Sin definir'
-      },
-      {
-        id: 1,
-        nombre: 'Activos'
-      },
-      {
-        id: 2,
-        nombre: 'Inactivos'
-      },
-      {
-        id: 3,
-        nombre: 'Deudores'
-      },
-    ];
-    this.clientes = [];
+    this.clientes=JSON.parse( localStorage.getItem("data") || '[]' );
   }// fin constructor
 
   getGrupos() {
@@ -39,6 +23,7 @@ export class ClientesService {
 
   agregarCliente(cliente: Cliente) {
     this.clientes.push(cliente);
+    localStorage.setItem('data',JSON.stringify(this.clientes));
   }
 
   nuevoCliente(): Cliente {
